@@ -18,4 +18,9 @@ class Company extends Model
     {
     	return $this->hasMany('App\Models\Financial\Account', 'company')->get();
     }
+
+    public function users()
+    {
+        return $this->hasMany('App\User', 'company')->get();
+    }
 }

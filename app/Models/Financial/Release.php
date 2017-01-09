@@ -35,6 +35,74 @@ class Release extends Model
         return $newDate;
     }
 
+    public static function lateReleases()
+    {
+        $accounts = auth()->user()->company()->accounts();
+        $late = collect();
+
+        $listLate = [];
+        
+        foreach ($accounts as $acc) {
+            $late = collect(Release::where([['payday', '<', date('Y-m-d')], ['status', '=', 'pending'], ['account', '=', $acc->id]])->get());
+        }
+        
+        if ($late->count() > 0) {
+            foreach ($late as $l) {
+                
+                if ($l->recurrence == '0:inf') {
+                    $date1 = new \DateTime(date('Y-m-d'));
+                    $date2 = new \DateTime($l->payday);
+                    $diff = ($date1->format('Y') - $date2->format('Y'))*12 + ($date1->format('m') - $date2->format('m'));
+                    
+                    $diff = $diff + 1;
+                    
+                    for ($i=1; $i <= $diff; $i++) { 
+                        $test = Release::where([['reference', '=', $l->reference], ['recurrence', '=', $i  . ':inf']])->get();
+                        if ($test->first() == null) {
+                            $payday = uDate::addMonthToDate($i-1, $l->payday);
+
+                            $link = '/admin/lancamentos/'.trans('database.'.$l->type).'/'.date('m/Y', strtotime($payday));
+
+                            $listLate[] = ['description' => $l->description, 'payday' => $payday, 'type' => $l->type, 'link' => $link]; 
+                        }
+                    }
+
+                    
+                }else{
+                    $link = '/admin/lancamentos/'.trans('database.'.$l->type).'/'.date('m/Y', strtotime($payday));
+                    $listLate[] = ['description' => $l->description, 'payday' => $l->payday, 'type' => $l->type, 'link' => $link];
+
+                }
+            }
+        }
+        return $listLate;
+    }
+
+    public static function todayReleases()
+    {
+        $today = [];
+        $date = self::dateBind(date('m'), date('Y'));
+        $receipt = Release::monthReleases($date, 'receipt');
+        $expense = Release::monthReleases($date, 'expense');
+
+        foreach ($receipt as $rec) {
+            $fakeDate = explode('/', $rec->payday);
+            if ($fakeDate[2].'-'.$fakeDate[1].'-'.$fakeDate[0] == date('Y-m-d') && $rec->status != 'payd') {
+                $link = '/admin/lancamentos/'.trans('database.'.$rec->type).'/'.date('m/Y', strtotime($rec->payday));
+                $today[] = ['description' => $rec->description, 'payday' => $rec->payday, 'type' => $rec->type, 'link' => $link];
+            }
+        }
+        foreach ($expense as $exp) {
+            $fakeDate = explode('/', $exp->payday);
+            if ($fakeDate[2].'-'.$fakeDate[1].'-'.$fakeDate[0] == date('Y-m-d') && $exp->status != 'payd') {
+                $link = '/admin/lancamentos/'.trans('database.'.$exp->type).'/'.date('m/Y', strtotime($exp->payday));
+                $today[] = ['description' => $exp->description, 'payday' => $exp->payday, 'type' => $exp->type, 'link' => $link];
+            }
+        }
+        return $today;
+    }
+
+
     public static function historic($date, $type){
         $historic = []; // Prepare bar chart seed
         $accounts = auth()->user()->company()->accounts();
@@ -133,6 +201,8 @@ class Release extends Model
 
             $data['recurrence'] = '1:1';
 
+            $data['description'] = trim($data['description']);
+
             Release::create($data);
 
             return true;
@@ -149,6 +219,8 @@ class Release extends Model
 
                 $data['payday'] = uDate::addMonthToDate(($i - 1), $startDate);
 
+                $data['description'] = trim($data['description']);
+
                 Release::create($data);
 
                 $data['status'] = 'pending';
@@ -162,6 +234,8 @@ class Release extends Model
 
             $data['payday'] = $data['payday']->format('Y-m-d H:i:s');
 
+            $data['description'] = trim($data['description']);
+            
             $temp = $data;
 
             $temp['status'] = 'pending';
@@ -257,7 +331,7 @@ class Release extends Model
         if($uCompany != $rCompany->id){
             return back()->withErrors(['Acesso negado.']);
         }
-        
+        $data['description'] = trim($data['description']);
         $data['payday'] = \DateTime::createFromFormat('d/m/Y H:i:s', $data['payday'] . ' 00:00:00');
         $data['original_date'] = \DateTime::createFromFormat('d/m/Y H:i:s', $data['original_date'] . ' 00:00:00');
 
@@ -278,7 +352,7 @@ class Release extends Model
         $all = Release::where('reference', '=', $release->reference)->get();
 
         foreach ($all as $a) {
-
+            
             $store = $data;
 
             $lastday = date('t', strtotime($a->payday));
@@ -303,7 +377,7 @@ class Release extends Model
         if($uCompany != $rCompany->id){
             return back()->withErrors(['Acesso negado.']);
         }
-        
+        $data['description'] = trim($data['description']);
         $data['payday'] = \DateTime::createFromFormat('d/m/Y H:i:s', $data['payday'] . ' 00:00:00');
         $data['original_date'] = \DateTime::createFromFormat('d/m/Y H:i:s', $data['original_date'] . ' 00:00:00');
 
@@ -326,7 +400,6 @@ class Release extends Model
                 $data['recurrence'] = $fakeRecurrence ;
                 $data['reference'] = $release->reference;
                 $data['type'] = $release->type;
-                $data['service'] = $release->service;
                 $data['payday'] = $data['payday']->format('Y-m-d');
 
                 Release::create($data);
@@ -345,7 +418,7 @@ class Release extends Model
         if($uCompany != $rCompany->id){
             return back()->withErrors(['Acesso negado.']);
         }
-        
+        $data['description'] = trim($data['description']);
         $data['payday'] = \DateTime::createFromFormat('d/m/Y H:i:s', $data['payday'] . ' 00:00:00');
         $data['original_date'] = \DateTime::createFromFormat('d/m/Y H:i:s', $data['original_date'] . ' 00:00:00');
 
@@ -527,12 +600,12 @@ class Release extends Model
             unset($data['id']);
             $data['payday'] = uDate::addMonthToDate($rec - 1 , date('Y-m-d', strtotime($release->payday)));
             $data['recurrence'] = $fakeRecurrence;
-            $data['status'] = 'pending';
+            $data['status'] = 'payd';
             $data['value'] = 0.0;
 
             Release::create($data);
         }else{
-            $release->update(['value' => 0.0]);
+            $release->update(['value' => 0.0, 'status' => 'payd']);
         }
     }
 

@@ -192,7 +192,6 @@ return [
          * Package Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
-        RachidLaasri\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class,
         /*Chumper\Zipper\ZipperServiceProvider::class,*/
 
         //
@@ -257,7 +256,6 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 
-        /*'Zipper' => Chumper\Zipper\Zipper::class,*/
 
     ],
 

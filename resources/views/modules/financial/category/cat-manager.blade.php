@@ -40,7 +40,7 @@
                         <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
                             {!!Form::label('type', 'Tipo: ', ['for' => 'type'])!!}
                             <input type="radio" class="flat-red" name="type" value="expense" @if(old('type') == 'expense') checked @endif /> Despesa
-                                   <input type="radio" class="flat-red" name="type" value="receipt" @if(old('type') == 'receipt') checked @endif/> Receita
+                           <input type="radio" class="flat-red" name="type" value="receipt" @if(old('type') == 'receipt') checked @endif/> Receita
 
                         </div>
                         {!! Form::submit('Criar', ['class' => 'btn btn-primary pull-right'])!!}
@@ -107,6 +107,54 @@
 </div>
 
 <div class="row">
+    
+    <div class="col-md-6">
+        <div class="box box-danger">
+
+            <div class="box-header with-border">
+                <h3 class="box-title">Despesa</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div><!-- /.box-header -->
+
+            <div class="box-body" style="max-height: 300px; overflow-y: scroll;">
+                <table class="table">
+                    <tr>
+                        <th>Categoria</th>
+                        <th style="width: 40px">Cor</th>
+                        <th></th>
+                    </tr>
+                    @if($categories->isEmpty())
+                    <tr><td>Nenhuma categoria encontrada</td></tr>
+                    @else
+                    @foreach($categories as $category)
+                    @if($category->type == 'expense' && $category->name != 'account_transfer')
+                    <tr>
+                        <td>{{$category->name}}</td>
+                        <td>
+                            @if($category->color == "")
+                            <i class="fa fa-minus"></i>
+                            @else
+                            <div style="width: 20px; height: 20px;border-radius: 50%; background-color: {{$category->color}}"></div>
+                            @endif
+                        </td>
+                        <td>
+                            <a title="Editar" onclick="editCategory('{{$category->id}}', '{{$category->name}}', '{{$category->color}}')"><i class="fa fa-edit"></i></a>
+                            <a title="Eliminar"  data-toggle="modal" data-target="#deleteModal" data-id="{{$category->id}}" data-name="{{$category->name}}"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    @endif
+                    @endforeach
+                    @endif
+
+                </table>
+            </div>
+        </div>
+    </div>
+
     <div class="col-md-6">
         <div class="box box-info">
 
@@ -152,53 +200,6 @@
 
                 </table>
 
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="box box-danger">
-
-            <div class="box-header with-border">
-                <h3 class="box-title">Despesas</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                </div>
-            </div><!-- /.box-header -->
-
-            <div class="box-body" style="max-height: 300px; overflow-y: scroll;">
-                <table class="table">
-                    <tr>
-                        <th>Categoria</th>
-                        <th style="width: 40px">Cor</th>
-                        <th></th>
-                    </tr>
-                    @if($categories->isEmpty())
-                    <tr><td>Nenhuma categoria encontrada</td></tr>
-                    @else
-                    @foreach($categories as $category)
-                    @if($category->type == 'expense' && $category->name != 'account_transfer')
-                    <tr>
-                        <td>{{$category->name}}</td>
-                        <td>
-                            @if($category->color == "")
-                            <i class="fa fa-minus"></i>
-                            @else
-                            <div style="width: 20px; height: 20px;border-radius: 50%; background-color: {{$category->color}}"></div>
-                            @endif
-                        </td>
-                        <td>
-                            <a title="Editar" onclick="editCategory('{{$category->id}}', '{{$category->name}}', '{{$category->color}}')"><i class="fa fa-edit"></i></a>
-                            <a title="Eliminar"  data-toggle="modal" data-target="#deleteModal" data-id="{{$category->id}}" data-name="{{$category->name}}"><i class="fa fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    @endif
-                    @endforeach
-                    @endif
-
-                </table>
             </div>
         </div>
     </div>

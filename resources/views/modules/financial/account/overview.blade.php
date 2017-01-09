@@ -51,12 +51,14 @@
 		  	</div>
   		</div>
 	</div>
-
+	
+	@include('inc.alert-msg')
+	
 	<div class="row">
   		<div class="col-md-12">
 
   			<div class="col-md-3 col-sm-6 col-xs-12 pull-right">
-  				<div class="info-box bg-green"  data-tt="tooltip" title="Projeção para o fim do mês">
+  				<div class="info-box bg-yellow"  data-tt="tooltip" title="Projeção para o fim do mês">
   			    <span class="info-box-icon"><i class="fa fa-line-chart"></i></span>
 	  			    <div class="info-box-content">
 			    		<span class="info-box-text">PROJEÇÃO TOTAL</span>
@@ -80,7 +82,6 @@
 
 	@include('modules.financial.account.partials.edit')
 	@include('modules.financial.account.partials.delete')
-	@include('inc.alert-msg')
 
 <script>
 	function formatCurrency(value) {

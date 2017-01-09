@@ -16,6 +16,8 @@ return [
     'admin' => 'Administrador',
     'customer' => 'Cliente',
     'fixed' => 'Fixo',
+    'receipt' => 'Receitas',
+    'expense' => 'Despesas',
 
     'Jan' => 'Jan',
     'Feb' => 'Fev',

@@ -20,22 +20,6 @@ class isInstalled
             return redirect('install');
         }
         
-        $admin = \App\User::where('email', '=',  config('app.admin_email'))
-                                ->where('name', '=',  config('app.admin_name'))
-                                ->get();
-                                
-        if ($admin->count() == 0) {
-            \App\User::create([
-                'name' => config('app.admin_name'),
-                'email' => config('app.admin_email'),
-                'password' => bcrypt(config('app.admin_pass')),
-            ]);
-        }
-
-        if (config('app.key') == 'base64:SseouFKH95sbacl8tXusMacvjcRWqd2vkXgN9hp4vOs=') {
-            \Artisan::call('key:generate');
-        }
-        
         return $next($request);
     }
 

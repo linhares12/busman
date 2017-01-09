@@ -18,6 +18,7 @@ class CategoryController extends Controller
 
     	return view('modules.financial.category.cat-manager')
                 ->with($pageParam)
+                ->with('menu', 'category')
                 ->with('categories', $categories);
     }
 
@@ -31,8 +32,12 @@ class CategoryController extends Controller
         if ($v->fails()) {
                 return back()->withErrors($v)->withInput();
         }
+        
         $insert = $request->all();
+
         $insert['company'] = auth()->user()->company;
+        $insert['name'] = trim($insert['name']);
+        $insert['color'] = trim($insert['color']);
 
         Category::create($insert);
 
@@ -50,8 +55,8 @@ class CategoryController extends Controller
             return back()->withErrors($v)->withInput();
         }
 
-        $data['name'] = $request->name_edit;
-        $data['color'] = $request->color_edit;
+        $data['name'] = trim($request->name_edit);
+        $data['color'] = trim($request->color_edit);
 
         $category = Category::findOrFail($request->id);
 

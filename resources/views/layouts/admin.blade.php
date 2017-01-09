@@ -94,6 +94,10 @@ button.my-close {
   border: 0;
 }
 
+.navbar{
+  box-shadow: 0 5px 5px rgba(0,0,0,.1);
+}
+
 </style>
 
 </head>
@@ -177,8 +181,8 @@ button.my-close {
 <script src="/admin/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Form Validator -->
-<script src="/admin/plugins/jQueryvalidation/jquery.validate.min.js"></script>
-<script src="/admin/plugins/jQueryvalidation/localization/messages_pt_BR.min.js"></script>
+<!--script src="/admin/plugins/jQueryvalidation/jquery.validate.min.js"></script>
+<script src="/admin/plugins/jQueryvalidation/localization/messages_pt_BR.min.js"></script-->
 
 <!-- ChartJS 1.0.1 -->
 <script src="/admin/plugins/chartjs/Chart.min.js"></script>
@@ -225,8 +229,6 @@ button.my-close {
 <script src="/admin/plugins/chartjs/Chart.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/admin/dist/js/pages/dashboard2.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="/admin/dist/js/demo.js"></script>
 
 
 </body>

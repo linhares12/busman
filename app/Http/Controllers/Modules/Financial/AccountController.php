@@ -56,13 +56,14 @@ class AccountController extends Controller
                         ->with('totalProjection', $totalProjection)
     			->with('totalBalabce', $totalBalabce)
     			->with('accSelect', $accSelect)
-                        ->with('accArray', $accArray)
+                ->with('accArray', $accArray)
+                ->with('menu', 'account')
     			->with('accounts', $accounts);
     }
 
     public function store(Request $request){
         $v = Validator::make($request->all(), [
-    			'name' => 'required'
+    			'name' => 'required|unique:accounts'
     		]);
 
     	if ($v->fails()) {
@@ -74,7 +75,7 @@ class AccountController extends Controller
         }
 
     	Account::create([
-                            'name' => $request->name,
+                            'name' => trim($request->name),
                             'company' => auth()->user()->company,
                             'amount' => $opening_balance
                         ]);
@@ -122,7 +123,7 @@ class AccountController extends Controller
             return back()->withErrors(['Acesso negado.']);
         }
         
-        $account->update(['name' => $request->name]);
+        $account->update(['name' => trim($request->name)]);
 
         return back();
     }
@@ -152,7 +153,7 @@ class AccountController extends Controller
         $ref = 'acount_transfer_'.Release::refGenerator();
 
         Release::create([
-                'description' => $description,
+                'description' => trim($description),
                 'type' => 'transfer_out',
                 'reference' => $ref,
                 'recurrence' => '1:1',
@@ -164,7 +165,7 @@ class AccountController extends Controller
             ]);
 
         Release::create([
-                'description' => $description,
+                'description' => trim($description),
                 'type' => 'transfer_in',
                 'reference' => $ref,
                 'recurrence' => '1:1',

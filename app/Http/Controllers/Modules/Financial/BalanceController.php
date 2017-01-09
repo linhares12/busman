@@ -58,6 +58,7 @@ class BalanceController extends Controller
                 ->with('monthExpense', $expenses)
                 ->with('profit', $profit)
                 ->with('title', 'Balanço')
+                ->with('menu', 'balance')
                 ->with('date', $date);
     }
 }

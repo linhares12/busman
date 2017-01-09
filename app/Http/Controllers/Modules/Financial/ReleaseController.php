@@ -17,14 +17,16 @@ class ReleaseController extends Controller
 {
     public function index($type = null, $month = null, $year = null){
        
-        if ($type == 'despesas') {
+        if (strtolower($type) == 'despesas') {
             $type = 'expense';
             $categories = Category::categoryList($type);
             $title = 'Despesas';
+            $menu = 'expense';
         }else{
             $type = 'receipt';
             $categories = Category::categoryList($type);
             $title = 'Receitas';
+            $menu = 'receipt';
         }
 
         $accounts = Account::accountsList();
@@ -45,6 +47,7 @@ class ReleaseController extends Controller
                         ->with('accounts', $accounts)
                         ->with('PieData', $PieData)
                         ->with('title', $title)
+                        ->with('menu', $menu)
                         ->with('type', $type);
     }
 

@@ -19,6 +19,35 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+    <style>
+        
+.my-close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;
+}
+.my-close:hover,
+.my-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+button.my-close {
+  -webkit-appearance: none;
+  
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+    </style>
 </head>
 <body>
     <div id="app">
