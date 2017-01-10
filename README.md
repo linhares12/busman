@@ -83,4 +83,4 @@ Caso deseje customização, melhora no desempenho, layout ou mais funções, ent
 
 Projeto open source colaborativo. Tem alguma sugestão de melhora? Crie sua pull request e conte-me sobre sua adaptação.
 
-Ou simplemente teste e abra um issue caso veja algum erro ou queira sugerir algo para que eu coloque na próxima versão
+Ou simplemente teste e abra um issue caso veja algum erro ou queira sugerir algo para que eu coloque na próxima versão.
