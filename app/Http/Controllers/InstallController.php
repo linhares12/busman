@@ -67,11 +67,9 @@ class InstallController extends Controller
     	$fields['MAIL_USERNAME'] = trim($request->mail_username);
     	$fields['MAIL_PASSWORD'] = trim($request->mail_password);
     	$fields['MAIL_ENCRYPTION'] = trim($request->mail_encryption);
-    	$fields['ADMIN_NAME'] = '"'.trim($request->name).'"';
-    	$fields['ADMIN_EMAIL'] = trim($request->email);
-    	$fields['ADMIN_PASS'] = trim($request->password);
 
     	$this->saveFile($fields);
+        sleep(5);
 
     	Artisan::call('key:generate');
     	
@@ -209,7 +207,7 @@ class InstallController extends Controller
         $content = "";
         
         for ($i=0; $i < count($input); $i++) { 
-        	$content .= key($input)."=". current($input)."\r\n";
+        	$content .= key($input)."=". current($input)."\n";
         	next($input);
         }
 
