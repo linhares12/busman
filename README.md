@@ -1,8 +1,8 @@
 # BusMan - Lite (Não estável)
 
-Solução open source para gerenciamento de receitas e despensas. Ideal para uso pessoal e em pequenas empresas. Uso individual.
+Solução open source para gerenciamento de receitas e despesas. Ideal para uso pessoal e em pequenas empresas. Uso individual.
 
-Caso deseje customização, melhora no desenpenho, layout ou mais funções, entre em contato como [desenvolvedor](https://albasolucoes.com).
+Caso deseje customização, melhora no desempenho, layout ou mais funções, entre em contato como [desenvolvedor](https://albasolucoes.com).
 
 ### Requisitos ###
 
@@ -34,7 +34,6 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
 
 ```
     php artisan key:generate
-
 ```
 
 * Siga com os comandos abaixo para criar as tabelas e os dados básicos
@@ -44,10 +43,14 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
 
     php artisan db:seed
 ```
-
-* Entre com usuário e senha de administrador padrão:
+* Suba os arquivos e o banco para sua hospedagem. Ou execute localmente:
+```
+	php artisan serve
+```
+* Na tela de login, entre com usuário e senha de administrador padrão:
 
 ```
+	link:   http://seudominio.com/login
     E-mail: admin@admin.com
     Senha:  busman.123
 ```
@@ -75,3 +78,9 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
 * Para contratação de serviços: [contato@albasolucoes.com](mailto:contato@albasolucoes.com)
 * Para reportar um erro: Abra um [Issue](https://github.com/albasolucoes/busman/issues)
 * Site do desenvolvedor: [Alba Soluções Web](https://albasolucoes.com)
+
+### Contribua! ###
+
+Projeto open source colaborativo. Tem alguma sugestão de melhora? Crie sua pull request e conte-me sobre sua adaptação.
+
+Ou simplemente teste e abra um issue caso veja algum erro ou queira sugerir algo para que eu coloque na próxima versão
