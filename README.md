@@ -43,7 +43,7 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
 
 * Após o primeiro acesso, você pode editar as credenciasi ou criar novo usuário no genrenciador de usuários, disponível no menu lateral.
 
-![Editar Usuários](/user_menu.png)
+![Editar Usuários](/user_nenu.png)
 
 * Enjoy :satisfied:
 
