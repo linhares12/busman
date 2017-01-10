@@ -3,7 +3,7 @@
 
 <div class="box box-default">
       <div class="box-header with-border"><!-- box-header -->
-        <h3 class="box-title">Lucro nos últimos meses (Receitas - Despesas)</h3> <div style="width: 20px; height: 20px; background-color: #00c0ef"></div> Lucro líquido
+        <h3 class="box-title">Lucro nos últimos meses (Receitas - Despesas)
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
           </button>
@@ -18,6 +18,13 @@
           </div>
         </div><!-- /.row -->
       </div><!-- ./box-body -->
+
+      <div class="box-footer">
+        <div class="col-md-2">
+          <div class="pull-left" style="width: 15px; height: 15px; background-color: #00c0ef; margin-right: 5px"></div>
+          <div class="pull-left"> Lucro líquido</div>
+        </div>
+       </div>
     </div><!-- /.box -->
 
 <script>

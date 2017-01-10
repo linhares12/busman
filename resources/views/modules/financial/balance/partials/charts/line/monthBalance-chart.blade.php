@@ -3,7 +3,7 @@
 
 <div class="box box-default">
       <div class="box-header with-border"><!-- box-header -->
-        <h3 class="box-title">Balanço Diário</h3> <div style="width: 20px; height: 20px; background-color: #00a65a"></div> Receitas <div style="width: 20px; height: 20px; background-color: #800000"></div> Despesas
+        <h3 class="box-title">Balanço Diário</h3>
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
           </button>
@@ -18,6 +18,16 @@
           </div>
         </div><!-- /.row -->
       </div><!-- ./box-body -->
+      <div class="box-footer">
+        <div class="col-md-2">
+          <div class="pull-left" style="width: 15px; height: 15px; background-color: #00a65a; margin-right: 5px"></div>
+          <div class="pull-left"> Receitas</div>
+        </div>
+        <div class="col-md-2">
+          <div class="pull-left" style="width: 15px; height: 15px; background-color: #800000; margin-right: 5px"></div>
+          <div class="pull-left">Despesas</div>
+        </div>
+       </div>
     </div><!-- /.box -->
 <?php 
 //dd($date);
