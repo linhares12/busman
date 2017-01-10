@@ -21,20 +21,35 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
 
     composer install
 ```
-* Suba os aquivos para sua hospedagem
-* Acesse http://exemplo.com/install (Onde "http://exemplo.com" deve ser substituido pelo seu domínio)
-* Siga as instruções do instalador.
 
-** No passo 2, é necessário informar dados válidos de acesso ao banco de dados, assim como criar as credenciais do futuro administrador do sistema.
+* Copie o arquivo *.env.example* com o nome *.env*
 
-![Variáveis do ambiente](install_edit.png)
+* Edite os dados de acesso ao banco de dados e servidor de e-mail(opcional)
 
-* Resolva possíveis problemas com módulos e permissionamentos de pastas, reportados nos passos seguintes do instalador.
+![Configurando acesso ao banco](/db_config.png)
+
+* Siga com os comandos abaixo para criar as tabelas e os dados básicos
+
+```
+    php artisan migrate
+
+    php artisan db:seed
+```
+* Entre com usuário e senha de administrador:
+```
+    E-mail: admin@admin.com
+    Senha: busman.123
+```
+
+* Após o primeiro acesso, você pode editar as credenciasi ou criar novo usuário no genrenciador de usuários, disponível no menu lateral.
+
+![Editar Usuários](/user_menu.png)
 
 * Enjoy :satisfied:
 
 ### Manual de Usuário ###
 
+* Após a instalação
 * *[Em construção]*
 
 ### Recursos utilizados ###

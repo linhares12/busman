@@ -19,10 +19,7 @@ Route::get('/home', function () {
 	return redirect('/admin/home');
 });
 
-Route::get('/install', 'InstallController@index');
-Route::post('/install', 'InstallController@install');
-
-Route::group(['middleware' => ['isInstalled', 'auth'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
 	Route::get('/home', 'HomeController@index');
 
