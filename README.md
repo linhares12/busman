@@ -20,12 +20,12 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
     git clone https://github.com/albasolucoes/busman.git
 
     composer install
-
-    copy .env.example .env
 ```
 
 * Copie o arquivo *.env.example* com o nome *.env*
-
+```
+    copy .env.example .env
+```
 * No arquivo *.env* criado, edite as informações de acesso ao banco de dados e servidor de e-mail(opcional), assim como qualquer outra informação pertinente à sua hospedagem.
 
 ![Configurando acesso ao banco](/db_config.png)
