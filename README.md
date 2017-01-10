@@ -20,6 +20,8 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
     git clone https://github.com/albasolucoes/busman.git
 
     composer install
+
+    copy .env.example .env
 ```
 
 * Copie o arquivo *.env.example* com o nome *.env*
@@ -28,6 +30,13 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
 
 ![Configurando acesso ao banco](/db_config.png)
 
+* Crie uma nova chave para a aplicação
+
+```
+    php artisan key:generate
+
+```
+
 * Siga com os comandos abaixo para criar as tabelas e os dados básicos
 
 ```
@@ -35,7 +44,9 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
 
     php artisan db:seed
 ```
-* Entre com usuário e senha de administrador:
+
+* Entre com usuário e senha de administrador padrão:
+
 ```
     E-mail: admin@admin.com
     Senha:  busman.123
