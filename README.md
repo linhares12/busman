@@ -41,7 +41,10 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
     Senha: busman.123
 ```
 
-* Após o primeiro acesso, você pode editar as credenciais ou criar novo usuário no genrenciador de usuários, disponível no menu lateral.
+* Após o primeiro acesso, você pode editar as credenciais ou criar novo acesso no genrenciador de usuários, disponível no menu lateral.
+
+>Todos os usuários criados terão o mesmo acesso a todas as informações.
+>Qualquer usuário pode ser eliminado ou editado, contando que haja ao menos 1 ativo.
 
 ![Editar Usuários](/user_nenu.png)
 
