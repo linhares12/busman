@@ -72,6 +72,15 @@ class HomeController extends Controller
     		$amPercentage = ($amount * 100) / $projection;
     	}
 
+        $expPayd = number_format($expPayd, 2, ',', '');
+        $recPayd = number_format($recPayd, 2, ',', '');
+        $expPorcentage = number_format($expPorcentage, 2, ',', '');
+        $recPorcentage = number_format($recPorcentage, 2, ',', '');
+        $amount = number_format($amount, 2, ',', '');
+        $amPercentage = number_format($amPercentage, 2, ',', '');
+        $projection = number_format($projection, 2, ',', '');
+
+
         return view('dashboard')->with('title', 'Home')
         						->with('lateReleases', $lateReleases)
         						->with('todayReleases', $todayReleases)

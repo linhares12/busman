@@ -1,6 +1,6 @@
 <div class="box box-default">
   <div class="box-header with-border">
-    <h3 class="box-title">Comparativo últimos meses</h3>
+    <h3 class="box-title">Comparativo últimos meses</h3> <div style="width: 20px; height: 20px; background-color: #00a65a"></div> Receitas <div style="width: 20px; height: 20px; background-color: #800000"></div> Despesas
 
     <div class="box-tools pull-right">
       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
