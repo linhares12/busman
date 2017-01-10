@@ -24,7 +24,7 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
 
 * Copie o arquivo *.env.example* com o nome *.env*
 
-* Edite os dados de acesso ao banco de dados e servidor de e-mail(opcional)
+* No arquivo *.env* criado, edite as informações de acesso ao banco de dados e servidor de e-mail(opcional), assim como qualquer outra informação pertinente à sua hospedagem.
 
 ![Configurando acesso ao banco](/db_config.png)
 
@@ -38,7 +38,7 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
 * Entre com usuário e senha de administrador:
 ```
     E-mail: admin@admin.com
-    Senha: busman.123
+    Senha:  busman.123
 ```
 
 * Após o primeiro acesso, você pode editar as credenciais ou criar novo acesso no genrenciador de usuários, disponível no menu lateral.
@@ -52,14 +52,12 @@ Caso deseje customização, melhora no desenpenho, layout ou mais funções, ent
 
 ### Manual de Usuário ###
 
-* Após a instalação
 * *[Em construção]*
 
 ### Recursos utilizados ###
 
 * [Laravel 5.3](https://github.com/laravel/laravel)
 * [Admin LTE Template](https://github.com/almasaeed2010/AdminLTE/)
-* [LaravelInstaller](https://github.com/RachidLaasri/LaravelInstaller)
 
 ### Com quem falar ###
 
