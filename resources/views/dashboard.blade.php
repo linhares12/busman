@@ -32,7 +32,7 @@
 	                	@endforeach
 	                @else
 						<tr>
-						  <td colspan="3">Denhuma pendência</td>
+						  <td colspan="3">Nenhuma pendência</td>
 						</tr>
 	                @endif
 	                
@@ -73,7 +73,7 @@
 	                	@endforeach
 	                @else
 						<tr>
-						  <td colspan="3">Denhuma pendência</td>
+						  <td colspan="3">Nenhuma pendência</td>
 						</tr>
 	                @endif
 	              </tbody></table>
@@ -97,8 +97,11 @@
 	                   <div class="progress">
 	                     <div class="progress-bar" style="width: {{$recPorcentage}}%"></div>
 	                   </div>
-	                       <span class="progress-description">
+	                       <span class="progress-description col-md-7">
 	                         {{$recPorcentage}}% recebido
+	                       </span>
+	                       <span class="pull-right">
+	                         (de R$ {{$recTotal}})
 	                       </span>
 	                 </div>
 	                 <!-- /.info-box-content -->
@@ -115,8 +118,11 @@
 	                   <div class="progress">
 	                     <div class="progress-bar" style="width: {{$expPorcentage}}%"></div>
 	                   </div>
-	                       <span class="progress-description">
+	                       <span class="progress-description col-md-7">
 	                         {{$expPorcentage}}% pago
+	                       </span>
+	                       <span class="pull-right">
+	                         (de R$ {{$expTotal}})
 	                       </span>
 	                 </div>
 	                 <!-- /.info-box-content -->
@@ -132,7 +138,7 @@
 	                   <div class="progress">
 	                     <div class="progress-bar" style="width: {{$amPercentage}}%"></div>
 	                   </div>
-	                       <span class="progress-description">
+	                       <span class="progress-description col-md-7">
 	                         {{$amPercentage}}% da projeção
 	                       </span>
 	                 </div>

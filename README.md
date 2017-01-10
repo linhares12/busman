@@ -1,4 +1,4 @@
-# BusMan - Lite#
+# BusMan - Lite# (Não estável)
 
 Solução open source para gerenciamento de receitas e despensas. Ideal para uso pessoal e em pequenas empresas. Uso individual.
 

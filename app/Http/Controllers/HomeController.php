@@ -79,13 +79,17 @@ class HomeController extends Controller
         $amount = number_format($amount, 2, ',', '');
         $amPercentage = number_format($amPercentage, 2, ',', '');
         $projection = number_format($projection, 2, ',', '');
+        $expTotal = number_format($expTotal, 2, ',', '');
+        $recTotal = number_format($recTotal, 2, ',', '');
 
 
         return view('dashboard')->with('title', 'Home')
         						->with('lateReleases', $lateReleases)
         						->with('todayReleases', $todayReleases)
-        						->with('expPayd', $expPayd)
-        						->with('recPayd', $recPayd)
+                                ->with('expPayd', $expPayd)
+        						->with('expTotal', $expTotal)
+                                ->with('recPayd', $recPayd)
+        						->with('recTotal', $recTotal)
         						->with('expPorcentage', $expPorcentage)
         						->with('recPorcentage', $recPorcentage)
         						->with('amount', $amount)
