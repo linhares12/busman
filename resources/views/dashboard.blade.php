@@ -91,7 +91,7 @@
 	            </div>
 	            <!-- /.box-header -->
 	            <div class="box-body" style="max-height: 335px; min-height: 335px; min-height: 335px; overflow-y: scroll;">
-	              <table class="table table-bordered">
+	              <table class="table table-hover">
 	                <tbody>
 	                <tr>
 	                  <th>Descrição</th>
@@ -131,7 +131,7 @@
 	            </div>
 	            <!-- /.box-header -->
 	            <div class="box-body" style="max-height: 335px; min-height: 335px; overflow-y: scroll;">
-	              <table class="table table-bordered">
+	              <table class="table table-hover">
 	                <tbody>
 	                <tr>
 	                  <th>Descrição</th>

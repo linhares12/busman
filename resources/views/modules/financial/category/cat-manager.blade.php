@@ -138,7 +138,7 @@
             </div><!-- /.box-header -->
 
             <div class="box-body" style="max-height: 400px; min-height: 400px; overflow-y: scroll;">
-                <table class="table">
+                <table class="table table-hover">
                     <tr>
                         <th>Categoria</th>
                         <th style="width: 40px">Cor</th>
@@ -184,7 +184,7 @@
                 </div>
             </div><!-- /.box-header -->
             <div class="box-body" style="max-height: 400px; min-height: 400px; overflow-y: scroll;">
-                <table class="table">
+                <table class="table table-hover">
                     <tr>
                         <th>Categoria</th>
                         <th style="width: 40px">Cor</th>

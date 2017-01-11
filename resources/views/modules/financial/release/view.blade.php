@@ -67,7 +67,7 @@ if ($type == 'receipt') {
       
         <div class="row">
           <div class="col-md-12 table-responsive">
-          <table id="example2" class="table">
+          <table id="example2" class="table table-hover">
             <thead>
               <tr>
                 <th style="width: 5%">Pago</th>
