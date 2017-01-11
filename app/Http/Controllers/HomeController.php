@@ -16,8 +16,6 @@ use App\Models\Utility\uDate;
 class HomeController extends Controller
 {
 
-
-
     public function index()
     {
     	$date = Release::dateBind(date('m'), date('Y'));

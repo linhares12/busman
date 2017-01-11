@@ -69,7 +69,7 @@ class Release extends Model
 
                     
                 }else{
-                    $link = '/admin/lancamentos/'.trans('database.'.$l->type).'/'.date('m/Y', strtotime($payday));
+                    $link = '/admin/lancamentos/'.trans('database.'.$l->type).'/'.date('m/Y', strtotime($l->payday));
                     $listLate[] = ['description' => $l->description, 'payday' => $l->payday, 'type' => $l->type, 'link' => $link];
 
                 }
