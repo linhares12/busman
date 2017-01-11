@@ -95,7 +95,7 @@
 	                <tbody>
 	                <tr>
 	                  <th>Descrição</th>
-	                  <td style="width: 10%">Mês</td>
+	                  <th style="width: 10%">Mês</th>
 	                  <th style="width: 4%">Tipo</th>
 	                </tr>
 	                @if($lateReleases)

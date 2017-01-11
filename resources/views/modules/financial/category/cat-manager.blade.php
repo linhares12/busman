@@ -137,7 +137,7 @@
                 </div>
             </div><!-- /.box-header -->
 
-            <div class="box-body" style="max-height: 300px; overflow-y: scroll;">
+            <div class="box-body" style="max-height: 400px; min-height: 400px; overflow-y: scroll;">
                 <table class="table">
                     <tr>
                         <th>Categoria</th>
@@ -183,7 +183,7 @@
                     </button>
                 </div>
             </div><!-- /.box-header -->
-            <div class="box-body" style="max-height: 300px; overflow-y: scroll;">
+            <div class="box-body" style="max-height: 400px; min-height: 400px; overflow-y: scroll;">
                 <table class="table">
                     <tr>
                         <th>Categoria</th>

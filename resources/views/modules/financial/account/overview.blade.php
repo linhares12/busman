@@ -92,6 +92,9 @@
 		  "ordering": true,
 		  "info": true,
 		  "autoWidth": false,
+	      "columnDefs": [
+	        { "orderable": false, "targets": 3 }
+	      ],
 		  "language": {
 		    "search": "Procurar:",
 		    "lengthMenu": "Mostrar _MENU_ itens",
