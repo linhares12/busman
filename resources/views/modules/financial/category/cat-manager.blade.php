@@ -60,7 +60,7 @@
                            <input type="radio" class="flat-red" name="type" value="receipt" @if(old('type') == 'receipt') checked @endif/> Receita
 
                         </div>
-                        {!! Form::submit('Criar', ['class' => 'btn btn-primary pull-right'])!!}
+                        {!! Form::submit('Criar', ['class' => 'btn btn-primary btn-flat pull-right'])!!}
                     </div>
                     <!-- /.col -->
                     {{Form::close([])}}
@@ -107,9 +107,9 @@
                     <!-- /.col -->
                     <div class="col-md-4">
 
-                        {{ Form::submit('Salvar', ['class' => 'btn btn-success'])}}
+                        {{ Form::submit('Salvar', ['class' => 'btn btn-success btn-flat'])}}
                         {!! Form::close() !!}
-                        <button type="button" class="btn btn-default" onclick="cancelEdit();">Cancelar</button>
+                        <button type="button" class="btn btn-default btn-flat" onclick="cancelEdit();">Cancelar</button>
 
                     </div>
                     <!-- /.col -->
