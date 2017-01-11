@@ -84,27 +84,29 @@ class Release extends Model
         return $listLate;
     }
 
-    public static function todayReleases()
-    {
+    public static function todayReleases(){
         $today = [];
         $date = self::dateBind(date('m'), date('Y'));
         $receipt = Release::monthReleases($date, 'receipt');
         $expense = Release::monthReleases($date, 'expense');
-
+        
         foreach ($receipt as $rec) {
             $fakeDate = explode('/', $rec->payday);
             if ($fakeDate[2].'-'.$fakeDate[1].'-'.$fakeDate[0] == date('Y-m-d') && $rec->status != 'payd') {
-                $link = '/admin/lancamentos/'.trans('database.'.$rec->type).'/'.date('m/Y', strtotime($rec->payday));
-                $today[] = ['description' => $rec->description, 'payday' => $rec->payday, 'type' => $rec->type, 'link' => $link];
+                $link = '/admin/lancamentos/'.trans('database.'.$rec->type).'/'.$fakeDate[1].'/'.$fakeDate[2];
+                $today[] = ['description' => $rec->description, 'payday' => $fakeDate[1].'/'.$fakeDate[2], 'type' => $rec->type, 'link' => $link];
             }
         }
         foreach ($expense as $exp) {
             $fakeDate = explode('/', $exp->payday);
             if ($fakeDate[2].'-'.$fakeDate[1].'-'.$fakeDate[0] == date('Y-m-d') && $exp->status != 'payd') {
-                $link = '/admin/lancamentos/'.trans('database.'.$exp->type).'/'.date('m/Y', strtotime($exp->payday));
-                $today[] = ['description' => $exp->description, 'payday' => $exp->payday, 'type' => $exp->type, 'link' => $link];
+
+                $link = '/admin/lancamentos/'.trans('database.'.$exp->type).'/'.$fakeDate[1].'/'.$fakeDate[2];
+                
+                $today[] = ['description' => $exp->description, 'value' => $exp->value, 'type' => $exp->type, 'link' => $link];
             }
         }
+        //dd();
         return $today;
     }
 

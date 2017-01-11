@@ -135,8 +135,8 @@
 	                <tbody>
 	                <tr>
 	                  <th>Descrição</th>
-	                  <th style="width: 10%">Mês</th>
-	                  <th style="width: 4%">Tipo</th>
+	                  <th>Valor</th>
+	                  <th style="width:4%">Tipo</th>
 	                </tr>
 
 	                @if($todayReleases)
@@ -146,7 +146,7 @@
 								  <td>
 								  
 								  {{$today['description']}}</td>
-								  <td>{{date('m/y', strtotime($today['payday']))}}</td>
+								  <td>R$ {{number_format($today['value'], 2, ',', '.')}}</td>
 								  <td><div style="width: 20px; height: 20px;border-radius: 50%; background-color: {{($today['type'] == 'receipt')? '#2F6E01' : '#800000'}}" title="{{trans('database.'.$today['type'])}}"></div></td>
 								</tr>
 							</a>
