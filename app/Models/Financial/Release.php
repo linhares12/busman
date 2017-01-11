@@ -38,15 +38,20 @@ class Release extends Model
     public static function lateReleases()
     {
         $accounts = auth()->user()->company()->accounts();
-        $late = collect();
-
+        $late = [];
+        
         $listLate = [];
         
         foreach ($accounts as $acc) {
-            $late = collect(Release::where([['payday', '<', date('Y-m-d')], ['status', '=', 'pending'], ['account', '=', $acc->id]])->get());
+            
+            $search = collect(Release::where([['payday', '<', date('Y-m-d')], ['status', '=', 'pending'], ['account', '=', $acc->id]])->get());
+            
+            if ($search->count() > 0) {
+                $late = array_merge($late, $search->all());
+            }
         }
         
-        if ($late->count() > 0) {
+        if ( ! empty($late)) {
             foreach ($late as $l) {
                 
                 if ($l->recurrence == '0:inf') {
@@ -60,10 +65,11 @@ class Release extends Model
                         $test = Release::where([['reference', '=', $l->reference], ['recurrence', '=', $i  . ':inf']])->get();
                         if ($test->first() == null) {
                             $payday = uDate::addMonthToDate($i-1, $l->payday);
-
-                            $link = '/admin/lancamentos/'.trans('database.'.$l->type).'/'.date('m/Y', strtotime($payday));
+                            if ($payday < date('Y-m-d')) {
+                                $link = '/admin/lancamentos/'.trans('database.'.$l->type).'/'.date('m/Y', strtotime($payday));
 
                             $listLate[] = ['description' => $l->description, 'payday' => $payday, 'type' => $l->type, 'link' => $link]; 
+                            }
                         }
                     }
 
