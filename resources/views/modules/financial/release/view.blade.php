@@ -74,7 +74,8 @@ if ($type == 'receipt') {
                 <th style="width: 10%">Vencimento</th>
                 <th style="width: 30%">Descrição</th>
                 <th style="width: 10%">Conta</th>
-                <th style="width: 12%" colspan="2">Categoria</th>
+                <!--th style="width: 2%"></th-->
+                <th style="width: 12%">Categoria</th>
                 <th style="width: 10%">Recorrência</th>
                 <th style="width: 10%">Valor</th>
                 <th style="width: 7%"></th>
@@ -93,9 +94,11 @@ if ($type == 'receipt') {
                   <td style="width: 5%">
                     @if($release['status'] != 'payd')
                       <i class="fa fa-minus" title="Pendente" data-tt="tooltip"></i>
+                      <font style="color: rgba(0,0,0,0)">A</font>
                       <?php $sum_not_payd[] = $release['value'] ?>
                     @else
                       <i class="fa fa-check" title="Pago" data-tt="tooltip"></i>
+                      <font style="color: rgba(0,0,0,0)">B</font>
                       <?php $sum_payd[] = $release['value'] ?>
                     @endif
                   </td>
@@ -103,7 +106,11 @@ if ($type == 'receipt') {
                   <td style="width: 10%">{{$release['payday']}}</td>
                   <td style="width: 30%">{{$release['description']}}</td>
                   <td style="width: 10%">{{$release['accountName']}}</td>
-                  <td style="width: 2%"><div style="width: 20px; height: 20px;border-radius: 50%; background-color: {{$release['categoryColor']}}"></div></td><td style="width: 10%">{{$release['categoryName']}}</td>
+
+                  <!--td style="width: 2%"><div style="width: 20px; height: 20px;border-radius: 50%; background-color: {{$release['categoryColor']}}"></div>
+                  </td-->
+                  <td style="width: 10%"><div class="pull-left" style="width: 20px; height: 20px;border-radius: 50%; margin-right: 5px; background-color: {{$release['categoryColor']}}"></div> {{$release['categoryName']}}</td>
+
                   <td style="width: 10%">{!!$release['recurrence']!!}</td>
                   <td style="width: 10%">R$ {{number_format($release['value'], 2, ',', '.')}}</td>
                   <td style="width: 7%; text-align: right;">
@@ -250,6 +257,9 @@ $(function () {
       "info": true,
       "autoWidth": false,
       "order": [[ 1, "asc" ]],
+      "columnDefs": [
+        { "orderable": false, "targets": 7 }
+      ],
       "language": {
         "search": "Procurar:",
         "lengthMenu": "Mostrar _MENU_ itens",
