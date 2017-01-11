@@ -54,7 +54,7 @@
 
 			                 <div class="info-box-content">
 			                   <span class="info-box-text">Saldo Atual</span>
-			                   <span class="info-box-number">R$ {{$amount}}</span>
+			                   <span class="info-box-number" style="color: {{($amount < 0)? '#800000' : ''}}">R$ {{$amount}}</span>
 
 			                   <div class="progress">
 			                     <div class="progress-bar" style="width: {{$amPercentage}}%"></div>
@@ -71,7 +71,7 @@
 
 			                 <div class="info-box-content">
 			                   <span class="info-box-text">Projeção Fim do Mês</span>
-			                   <span class="info-box-number">R$ {{$projection}}</span>
+			                   <span class="info-box-number" style="color: {{($projection < 0)? '#800000' : ''}}">R$ {{$projection}}</span>
 
 			                   <div class="progress">
 			                     <div class="progress-bar" style="width: 100%"></div>

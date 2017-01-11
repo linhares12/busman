@@ -19,17 +19,17 @@
 
                     <div class="col-md-3">
                         <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
-                            {!!Form::label('name', 'Nome', ['for' => 'name'])!!}
+                            {!!Form::label('name', 'Nome: ', ['for' => 'name'])!!}
                             <input type="text" name="name" class="form-control" value="{{ old('name')}}", id="nameColor">
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group {{ $errors->has('color') ? ' has-error' : '' }}">
-                            {!!Form::label('color', 'Cor', ['for' => 'color'])!!}
+                            {!!Form::label('color', 'Cor: ', ['for' => 'color'])!!}
 
                             <div class="input-group my-colorpicker2">
-                                <input type="text" name="color" class="form-control" value="{{ old('color')}}" id="colorText">
+                                <input type="text" name="color" class="form-control" value="{{ old('color')}}" id="colorText" placeholder="Clique no ícone &rarr;">
                                 <div class="input-group-addon">
                                 <i class="glyphicon glyphicon-tint" id="iconColor" style="border-radius: 50%; width: 20px; height: 20px"></i>
                                 </div>

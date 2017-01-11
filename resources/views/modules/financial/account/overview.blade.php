@@ -54,26 +54,25 @@
 	
 	@include('inc.alert-msg')
 	<div class="row">
-  			<div class="col-md-6 col-sm-6 col-xs-12">
-  				<div class="info-box bg-yellow"  data-tt="tooltip" title="Projeção para o fim do mês">
-  			    <span class="info-box-icon"><i class="fa fa-line-chart"></i></span>
+			<div class="col-md-6 col-sm-6 col-xs-12">
+  				<div class="info-box bg-aqua"  data-tt="tooltip" title="Valor total em caixa">
+  			    <span class="info-box-icon"><i class="fa fa-usd"></i></span>
 	  			    <div class="info-box-content">
-			    		<span class="info-box-text">PROJEÇÃO TOTAL</span>
-	  			      	<span class="info-box-number">R$ {{number_format($totalProjection, 2, ',', '.')}}</span>
+			    		<span class="info-box-text">SALDO TOTAL</span>
+	  			      	<span class="info-box-number" style="color: {{($totalBalabce < 0)? '#800000' : ''}}" >R$ {{number_format($totalBalabce, 2, ',', '.')}}</span>
 	  			    </div>
   			  	</div>
   			</div><!-- /.col -->
 
   			<div class="col-md-6 col-sm-6 col-xs-12">
-  				<div class="info-box bg-aqua"  data-tt="tooltip" title="Valor total em caixa">
-  			    <span class="info-box-icon"><i class="fa fa-usd"></i></span>
+  				<div class="info-box bg-yellow"  data-tt="tooltip" title="Projeção para o fim do mês">
+  			    <span class="info-box-icon"><i class="fa fa-line-chart"></i></span>
 	  			    <div class="info-box-content">
-			    		<span class="info-box-text">SALDO TOTAL</span>
-	  			      	<span class="info-box-number">R$ {{number_format($totalBalabce, 2, ',', '.')}}</span>
+			    		<span class="info-box-text">PROJEÇÃO TOTAL</span>
+	  			      	<span class="info-box-number" style="color: {{($totalProjection < 0)? '#800000' : ''}}">R$ {{number_format($totalProjection, 2, ',', '.')}}</span>
 	  			    </div>
   			  	</div>
   			</div><!-- /.col -->
-  			
   		</div>
 
 	@include('modules.financial.account.partials.edit')
