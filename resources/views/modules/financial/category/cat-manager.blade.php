@@ -20,7 +20,7 @@
                     <div class="col-md-3">
                         <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                             {!!Form::label('name', 'Nome', ['for' => 'name'])!!}
-                            <input type="text" name="name" class="form-control" value="{{ old('name')}}">
+                            <input type="text" name="name" class="form-control" value="{{ old('name')}}", id="nameColor">
                         </div>
                     </div>
 
@@ -29,11 +29,28 @@
                             {!!Form::label('color', 'Cor', ['for' => 'color'])!!}
 
                             <div class="input-group my-colorpicker2">
-                                <input type="text" name="color" class="form-control" value="{{ old('color')}}">
-                                <div class="input-group-addon"><i style="border-radius: 50%"></i></div>
+                                <input type="text" name="color" class="form-control" value="{{ old('color')}}" id="colorText">
+                                <div class="input-group-addon">
+                                <i class="glyphicon glyphicon-tint" id="iconColor" style="border-radius: 50%; width: 20px; height: 20px"></i>
+                                </div>
                             </div>
                             <!-- /.input group -->
                         </div>
+                        <script>
+                            $(document).ready(function () {
+                              $("#iconColor").click(function() { 
+                                document.getElementById('iconColor').className = '';
+                               });
+
+                                $( document.body ).click(function() {
+                                    if (document.getElementById('colorText').value == '') {
+                                        document.getElementById('iconColor').className = 'glyphicon glyphicon-tint';
+                                    }else{
+                                        document.getElementById('iconColor').className = '';
+                                    }
+                                });
+                            });
+                        </script>
                     </div>
                     <!-- /.col -->
                     <div class="col-md-5">

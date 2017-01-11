@@ -7,9 +7,9 @@
       </button>
     </div>
   </div>
-  <div class="box-body">
+  <div class="box-body" style="min-height: 380px">
     <div class="chart">
-      <canvas id="barChart" style="height:250px"></canvas>
+      <canvas id="barChart"></canvas>
     </div>
   </div><!-- /.box-body -->
 </div><!-- /.box -->

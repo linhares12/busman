@@ -148,7 +148,7 @@ if ($type == 'receipt') {
         }
         
       ?>
-      <div class="col-md-3 col-sm-6 col-xs-12 pull-right">
+      <div class="col-md-4 col-sm-6 col-xs-12 pull-right">
           <div class="info-box bg-aqua">
             <span class="info-box-icon"><i class="fa fa-dollar"></i></span>
 
@@ -169,7 +169,7 @@ if ($type == 'receipt') {
         </div>
         <!-- /.col -->
 
-        <div class="col-md-3 col-sm-6 col-xs-12 pull-right">
+        <div class="col-md-4 col-sm-6 col-xs-12 pull-right">
           <div class="info-box bg-green">
             <span class="info-box-icon"><i class="fa fa-money"></i></span>
 
@@ -183,7 +183,7 @@ if ($type == 'receipt') {
         </div>
         <!-- /.col -->
 
-        <div class="col-md-3 col-sm-6 col-xs-12 pull-right">
+        <div class="col-md-4 col-sm-6 col-xs-12 pull-right">
           <div class="info-box bg-red">
             <span class="info-box-icon"><i class="fa fa-clock-o"></i></span>
 

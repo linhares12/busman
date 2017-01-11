@@ -41,8 +41,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary" id="subEfective">Efetivar</button>
+        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary btn-flat" id="subEfective">Efetivar</button>
         {!!Form::close()!!}
       </div>
     </div>

@@ -8,12 +8,12 @@
       
     </div>
   </div>
-  <div class="box-body">
+  <div class="box-body" style="min-height: 380px">
     @if(empty($PieData))
       <div style="text-align: center;">Nenhum lançamento</div>
       <canvas id="pieChart"></canvas>
     @else
-      <canvas id="pieChart" style="height:250px"></canvas>
+      <canvas id="pieChart"></canvas>
     @endif
   </div><!-- /.box-body -->
 </div><!-- /.box -->

@@ -22,7 +22,7 @@
   			  
   			  	<div class="box-body">
   			  		<div class="col-md-12 table-responsive">
-	  			  		<table id="example2" class="table">
+	  			  		<table id="example2" class="table dataTable" role="grid">
 	  			  		  	<thead>
 	  			  		  		<tr>
 			  			  		    <th>Nome da Conta</th>
@@ -53,11 +53,8 @@
 	</div>
 	
 	@include('inc.alert-msg')
-	
 	<div class="row">
-  		<div class="col-md-12">
-
-  			<div class="col-md-3 col-sm-6 col-xs-12 pull-right">
+  			<div class="col-md-6 col-sm-6 col-xs-12">
   				<div class="info-box bg-yellow"  data-tt="tooltip" title="Projeção para o fim do mês">
   			    <span class="info-box-icon"><i class="fa fa-line-chart"></i></span>
 	  			    <div class="info-box-content">
@@ -67,7 +64,7 @@
   			  	</div>
   			</div><!-- /.col -->
 
-  			<div class="col-md-3 col-sm-6 col-xs-12 pull-right">
+  			<div class="col-md-6 col-sm-6 col-xs-12">
   				<div class="info-box bg-aqua"  data-tt="tooltip" title="Valor total em caixa">
   			    <span class="info-box-icon"><i class="fa fa-usd"></i></span>
 	  			    <div class="info-box-content">
@@ -78,7 +75,6 @@
   			</div><!-- /.col -->
   			
   		</div>
-	</div>
 
 	@include('modules.financial.account.partials.edit')
 	@include('modules.financial.account.partials.delete')

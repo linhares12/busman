@@ -53,8 +53,5 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 	Route::post('/usuario/pass/reset', 'Modules\Register\UserController@passReset');
 
 	Route::resource('usuario', 'Modules\Register\UserController', ['only' => ['index', 'update', 'destroy', 'store']]);
-
-	
-
 });
 

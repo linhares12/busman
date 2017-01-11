@@ -92,8 +92,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" onclick="validateForm('createReceipt', 'createErrorReport')">Salvar</button>
+        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary btn-flat" onclick="validateForm('createReceipt', 'createErrorReport')">Salvar</button>
       </div>
     </div>
   </div>
