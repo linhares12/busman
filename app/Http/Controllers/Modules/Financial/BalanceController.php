@@ -9,10 +9,10 @@ class BalanceController extends Controller
 {
     public function index($month = null, $year = null){
         $date = Release::dateBind($month, $year); // Prepare target date
-
+        
         $historicReceipt = Release::historic($date, 'receipt');
         $historicExpense = Release::historic($date, 'expense');
-
+        
         $profit = [];
         for ($i=0; $i < count($historicReceipt); $i++) {
             $profit[$i] = ['month' => $historicReceipt[$i]['month'], 'value' => $historicReceipt[$i]['value'] - $historicExpense[$i]['value']];
@@ -39,11 +39,12 @@ class BalanceController extends Controller
         $monthReceipts = Release::monthReleases($date, 'receipt');
 
         $receipts = [];
-
-        foreach ($monthReceipts as $key => $value) {
-
-            $value = $value->getOriginal();
-            $day = (int)date('d', strtotime($value['payday']));
+        
+        foreach ($monthReceipts as $value) {
+            
+            $payday = explode('/', $value->payday);
+            $day = (int)$payday[0];
+            
             if (isset($receipts[$day])) {
                 $receipts[$day] = $receipts[$day] + $value['value'];
             }else{

@@ -10,7 +10,7 @@
         <!-- Form de inserção -->
         {{Form::open(['url' => '/admin/account/delete', 'class' => 'delete_form', 'name' => 'deleteAccount'])}}
 
-        <strong"><i class="fa fa-exclamation-triangle"></i> Cuidado! Ao eliminar uma conta, todos os lançamentos associados a esta serão eliminados. <font style='text-decoration: underline;'>Incluindo os já efetivados no passado.</font></strong>
+        <strong"><i class="fa fa-exclamation-triangle"></i> Cuidado! Ao eliminar uma conta, todos os lançamentos associados a esta serão eliminados. <font style='text-decoration: underline;'>Incluindo os efetivados no passado.</font></strong>
 
         <input type="hidden" name="id" id="id">
           

@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary btn-sm" data-tt="tooltip" data-toggle="modal" data-target="#createAccountModal"  title="Novo Lançamento" style="border-radius: 50%">
+<button type="button" class="btn btn-primary btn-sm" data-tt="tooltip" data-toggle="modal" data-target="#createAccountModal"  title="Nova Conta" style="border-radius: 50%">
   <i class="fa fa-plus"></i>
 </button>
 

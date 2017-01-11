@@ -21,12 +21,12 @@ class Release extends Model
 
     public static function fakeParcelDate($actualMonth, $actualYear, $originalDate){
         $date = \DateTime::createFromFormat('Y-m-d H:i:s', $originalDate.' 00:00:00');
-
+        
         $testDate = $actualYear.'-'.$actualMonth.'-01';
 
         $lastday = date('t',strtotime($testDate));
-
-        if($date->format('d') > $lastday){
+        
+        if((int)$date->format('d') > $lastday){
             $newDate = $actualYear.'-'.$actualMonth.'-'.$lastday;
         }else{
             $newDate = $actualYear.'-'.$actualMonth.'-'.$date->format('d');
@@ -61,7 +61,7 @@ class Release extends Model
                     
                     $diff = $diff + 1;
                     
-                    for ($i=1; $i <= $diff; $i++) { 
+                    for ($i=1; $i <= $diff; $i++) {
                         $test = Release::where([['reference', '=', $l->reference], ['recurrence', '=', $i  . ':inf']])->get();
                         if ($test->first() == null) {
                             $payday = uDate::addMonthToDate($i-1, $l->payday);
