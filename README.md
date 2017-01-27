@@ -1,4 +1,4 @@
-# BusMan - Lite (Não estável)
+# BusMan - Lite
 
 Solução open source para gerenciamento de receitas e despesas. Ideal para uso pessoal e em pequenas empresas. Uso individual.
 
