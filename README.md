@@ -66,7 +66,7 @@ Caso deseje customização, melhora no desempenho, layout ou mais funções, ent
 
 ### Manual de Usuário ###
 
-* *[Em construção]*
+[Vídeo de Demonstração](https://www.youtube.com/watch?v=Chi2IzX3fKw)
 
 ### Recursos utilizados ###
 
