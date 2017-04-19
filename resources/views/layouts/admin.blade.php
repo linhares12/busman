@@ -58,9 +58,8 @@
 .alert-dismissable .my-close,
 .alert-dismissible .my-close {
   position: relative;
-  top: -7px;
-  right: -19px;
-  
+  top: -3px;
+  right: -4px;
 }
 .modal-content{
   border-radius: 0px;
