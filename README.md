@@ -1,6 +1,6 @@
 # BusMan - Lite
 
-> **Atenção!** Este repositório está sendo abandonado. Novas atualizações serão lançados no seguinte: https://github.com/sapizi/sapizi
+> https://www.youtube.com/watch?time_continue=1&v=-YEG9DgRHhA
 
 Solução open source para gerenciamento de receitas e despesas. Ideal para uso pessoal e em pequenas empresas. Uso individual.
 
