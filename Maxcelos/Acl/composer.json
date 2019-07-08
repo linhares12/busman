@@ -1,0 +1,28 @@
+{
+    "name": "maxcelos/acl",
+    "description": "Roles and permissions API implementation based on spatie/laravel-permission",
+    "authors": [
+        {
+            "name": "Marcelo Barros da Silva",
+            "email": "maxcelos@outlook.com"
+        }
+    ],
+    "require": {
+        "spatie/laravel-permission": "^2.37"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Maxcelos\\Acl\\Providers\\AclServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Maxcelos\\Acl\\": ""
+        }
+    }
+}
