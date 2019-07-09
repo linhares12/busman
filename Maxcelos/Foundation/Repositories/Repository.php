@@ -11,7 +11,7 @@ abstract class Repository implements RepositoryInterface
 
     protected $primaryKey;
 
-    function __construct(Model $model, $primaryKey = 'uuid')
+    function __construct(Model $model, $primaryKey = 'id')
     {
         $this->model = $model;
         $this->primaryKey = $primaryKey;
@@ -35,7 +35,7 @@ abstract class Repository implements RepositoryInterface
 
     public function get($id): RepositoryInterface
     {
-        if ($this->primaryKey == 'uuid') {
+        if (in_array('Dyrynda\Database\Support\GeneratesUuid', class_uses($this->model))) {
             $modelFound = $this->model->whereUuid($id)->first();
         } else {
             $modelFound = $this->model->where($this->primaryKey, $id)->first();

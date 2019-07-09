@@ -5,9 +5,13 @@ namespace Maxcelos\Financial\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Maxcelos\Financial\Contracts\Account as AccountContract;
+use Maxcelos\Financial\Contracts\Category as CategoryContract;
 use Maxcelos\Financial\Entities\Account;
+use Maxcelos\Financial\Entities\Category;
 use Maxcelos\Financial\Policies\AccountPolicy;
+use Maxcelos\Financial\Policies\CategoryPolicy;
 use Maxcelos\Financial\Repositories\AccountRepository;
+use Maxcelos\Financial\Repositories\CategoryRepository;
 use Maxcelos\Foundation\Traits\HasPolicies;
 
 class FinancialServiceProvider extends ServiceProvider
@@ -15,7 +19,8 @@ class FinancialServiceProvider extends ServiceProvider
     use HasPolicies;
 
     protected $policies = [
-        Account::class => AccountPolicy::class
+        Account::class => AccountPolicy::class,
+        Category::class => CategoryPolicy::class
     ];
 
     /**
@@ -44,6 +49,7 @@ class FinancialServiceProvider extends ServiceProvider
         $this->app->register(RouteServiceProvider::class);
 
         $this->app->bind(AccountContract::class, AccountRepository::class);
+        $this->app->bind(CategoryContract::class, CategoryRepository::class);
     }
 
     /**
