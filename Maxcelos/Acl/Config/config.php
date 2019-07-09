@@ -7,17 +7,7 @@ return [
 
     'permissions' => [
         'role',
-        'post' => [
-            'actions' => ['deactivate', 'sdfs']
-        ],
-        'user' => [
-            'actions' => ['deactivate', 'edit'],
-            'strict' => true
-        ],
-        'plan',
-        'owner',
-        'contract',
-        'renter',
-        'property',
+        'user',
+        'account',
     ]
 ];

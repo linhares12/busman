@@ -20,7 +20,7 @@ abstract class Service
 
     public function get($id)
     {
-        return $this->repo->get($id);
+        return $this->repo->get($id)->toModel();
     }
 
     public function update($id, array $data)

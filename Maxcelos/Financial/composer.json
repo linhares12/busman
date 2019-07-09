@@ -1,0 +1,25 @@
+{
+    "name": "maxcelos/financial",
+    "description": "",
+    "authors": [
+        {
+            "name": "Marcelo Barros da Silva",
+            "email": "maxcelos@outlook.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Maxcelos\\Financial\\Providers\\FinancialServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Maxcelos\\Financial\\": ""
+        }
+    }
+}

@@ -6,10 +6,8 @@ use Maxcelos\People\Scopes\TenancyScope;
 
 trait HasTenancy
 {
-    protected static function boot()
+    protected static function bootHasTenancy()
     {
-        parent::boot();
-
         if (auth()->check()) {
             static::addGlobalScope(new TenancyScope());
 

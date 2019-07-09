@@ -4,7 +4,6 @@ namespace Maxcelos\Foundation\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 use Maxcelos\Foundation\Contracts\Repository as RepositoryInterface;
-use phpDocumentor\Reflection\Types\Boolean;
 
 abstract class Repository implements RepositoryInterface
 {
