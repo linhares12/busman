@@ -21,16 +21,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->date('birthday')->nullable();
-            $table->string('marital_status')->nullable();
-            $table->string('profession')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
-        });
-
-        Schema::table('bank_accounts', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -41,7 +34,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bank_accounts');
         Schema::dropIfExists('users');
     }
 }

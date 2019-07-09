@@ -18,14 +18,14 @@ class RoleTest extends TestCase
         $user = factory(User::class)->create();
         $data = factory(Role::class)->make()->toArray();
 
-        $this->actingAs($user, 'api')->json('post', 'v1/acl/roles', $data)
+        $this->actingAs($user, 'api')->json('post', 'v1/roles', $data)
             ->assertStatus(201);
     }
 
     public function testListRoles()
     {
         $user = factory(User::class)->create();
-        $this->actingAs($user, 'api')->json('get', 'v1/acl/roles')
+        $this->actingAs($user, 'api')->json('get', 'v1/roles')
             ->assertStatus(200);
     }
 
@@ -35,7 +35,7 @@ class RoleTest extends TestCase
         $roleService = new RoleService(new RoleRepository(new Role()));
         $role = $roleService->make(factory(Role::class)->make()->toArray());
 
-        $this->actingAs($user, 'api')->json('get', 'v1/acl/roles/' . $role->id)
+        $this->actingAs($user, 'api')->json('get', 'v1/roles/' . $role->id)
             ->assertStatus(200);
     }
 
@@ -50,7 +50,7 @@ class RoleTest extends TestCase
         $roleUpdated = $roleService->make($newData)->toArray();
         $roleUpdated['id'] = $role->id;
 
-        $this->actingAs($user, 'api')->json('put', 'v1/acl/roles/' . $role->id, $newData)
+        $this->actingAs($user, 'api')->json('put', 'v1/roles/' . $role->id, $newData)
             ->assertJsonFragment($roleUpdated)
             ->assertStatus(200);
     }
@@ -61,6 +61,6 @@ class RoleTest extends TestCase
         $roleService = new RoleService(new RoleRepository(new Role()));
         $role = $roleService->make(factory(Role::class)->make()->toArray());
 
-        $this->actingAs($user, 'api')->json('delete', 'v1/acl/roles/' . $role->id)->assertStatus(204);
+        $this->actingAs($user, 'api')->json('delete', 'v1/roles/' . $role->id)->assertStatus(204);
     }
 }

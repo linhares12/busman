@@ -5,7 +5,6 @@ namespace Maxcelos\People\Services;
 use Illuminate\Support\Facades\DB;
 use Maxcelos\Foundation\Services\Service;
 use Maxcelos\People\Contracts\User as UserRepoContract;
-use Maxcelos\People\Entities\User;
 
 class UserService extends Service
 {
@@ -31,7 +30,7 @@ class UserService extends Service
         return $user->load('roles');
     }
 
-    public function get($id): User
+    public function get($id)
     {
         return $this->repo->get($id)->toModel()->load(['roles.permissions']);
     }

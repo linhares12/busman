@@ -5,7 +5,6 @@ namespace Maxcelos\Acl\Services;
 use Illuminate\Support\Facades\DB;
 use Maxcelos\Acl\Contracts\Role as RoleRepoContract;
 use Maxcelos\Foundation\Services\Service;
-use Spatie\Permission\Models\Role;
 
 class RoleService extends Service
 {
@@ -16,7 +15,7 @@ class RoleService extends Service
         $repo->setPrimaryKey('id');
     }
 
-    public function make(array $data) : Role
+    public function make(array $data)
     {
         $role = DB::transaction(function () use ($data) {
             $role = $this->repo->make($data)->toModel();
@@ -29,7 +28,7 @@ class RoleService extends Service
         return $role->load('permissions');
     }
 
-    public function get($id) : Role
+    public function get($id)
     {
         return $this->repo->get($id)->toModel()->load('permissions');
     }

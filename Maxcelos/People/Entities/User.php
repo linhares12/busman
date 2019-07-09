@@ -8,7 +8,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Maxcelos\People\Notifications\VerifyEmail;
-use Maxcelos\Subscription\Entities\BankAccount;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -17,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, Notifiable, GeneratesUuid, HasRoles, SoftDeletes;
 
     protected $fillable = [
-        'name', 'email', 'password', 'birthday', 'marital_status', 'profession'
+        'name', 'email', 'password'
     ];
 
     protected $hidden = [
@@ -28,16 +27,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'uuid' => 'uuid'
     ];
-
-    public function ownerProfile()
-    {
-        return $this->hasOne(Owner::class);
-    }
-
-    public function bankAccounts()
-    {
-        return $this->hasMany(BankAccount::class);
-    }
 
     public function sendEmailVerificationNotification()
     {

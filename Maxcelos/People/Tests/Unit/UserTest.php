@@ -3,13 +3,12 @@
 namespace Maxcelos\People\Tests\Unit;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Maxcelos\Foundation\Entities\LegalDocument;
 use Maxcelos\People\Entities\User;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    // use DatabaseTransactions;
+    use DatabaseTransactions;
 
     public function testCreateUser()
     {
@@ -20,7 +19,7 @@ class UserTest extends TestCase
         $data['password'] = 'password';
         $data['password_confirmation'] = 'password';
 
-        $data['roles'] = [1, 2];
+        $data['roles'] = [1];
 
         unset($data['email_verified_at']);
 
@@ -54,6 +53,7 @@ class UserTest extends TestCase
         $newData['email'] = $newData['email'] . 'sd';
 
         unset($newData['created_at']);
+        unset($newData['updated_at']);
 
         $response = $this->actingAs($user, 'api')->json('put', 'v1/users/' . $user->uuid, $newData);
 

@@ -18,8 +18,7 @@ use Illuminate\Http\Request;
 });*/
 
 Route::group([
-    'middleware' => 'auth:api',
-    'prefix' => 'acl'
+    'middleware' => 'auth:api'
 ], function () {
     Route::apiResource('roles', 'RoleController');
 });

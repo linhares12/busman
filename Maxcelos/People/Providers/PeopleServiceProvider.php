@@ -26,9 +26,7 @@ class PeopleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerTranslations();
         $this->registerConfig();
-        $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
@@ -36,15 +34,8 @@ class PeopleServiceProvider extends ServiceProvider
 
         $this->app->make('router')->middleware(\Spatie\Cors\Cors::class);
 
-        /*Passport::routes(function ($router) {
-            $router->forAccessTokens();
-            $router->forTransientTokens();
-        }, ['prefix' => 'v1/oauth']);*/
-
         Relation::morphMap([
             'users' => User::class,
-            'owners' => Owner::class,
-            'renters' => Renter::class,
         ]);
     }
 
@@ -63,16 +54,6 @@ class PeopleServiceProvider extends ServiceProvider
             UserContract::class,
             UserRepository::class
         );
-
-        $this->app->bind(
-            OwnerContract::class,
-            OwnerRepository::class
-        );
-
-        $this->app->bind(
-            RenterContract::class,
-            RenterRepository::class
-        );
     }
 
     /**
@@ -88,42 +69,6 @@ class PeopleServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../Config/config.php', 'people'
         );
-    }
-
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = resource_path('views/modules/people');
-
-        $sourcePath = __DIR__.'/../Resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ], 'views');
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/people';
-        }, \Config::get('view.paths')), [$sourcePath]), 'people');
-    }
-
-    /**
-     * Register translations.
-     *
-     * @return void
-     */
-    public function registerTranslations()
-    {
-        $langPath = resource_path('lang/modules/people');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'people');
-        } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'people');
-        }
     }
 
     /**
