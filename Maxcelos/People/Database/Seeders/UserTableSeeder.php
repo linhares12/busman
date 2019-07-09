@@ -5,6 +5,7 @@ namespace Maxcelos\People\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Maxcelos\People\Entities\Tenancy;
 use Maxcelos\People\Entities\User;
 
 class UserTableSeeder extends Seeder
@@ -17,6 +18,16 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         Model::unguard();
+
+        Tenancy::create([
+            'name' => 'default',
+            'description' => 'Default tenancy',
+        ]);
+
+        Tenancy::create([
+            'name' => 'alternative',
+            'description' => 'Some other tenancy',
+        ]);
 
         User::create([
             'name' => 'Admin',

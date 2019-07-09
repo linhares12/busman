@@ -3,6 +3,7 @@
 namespace Maxcelos\People\Tests\Unit;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Maxcelos\People\Entities\Tenancy;
 use Maxcelos\People\Entities\User;
 use Tests\TestCase;
 
@@ -58,6 +59,22 @@ class UserTest extends TestCase
         $response = $this->actingAs($user, 'api')->json('put', 'v1/users/' . $user->uuid, $newData);
 
         $response->assertJsonFragment($newData)->assertStatus(200);
+    }
+
+    public function testAlternateUserTenancy()
+    {
+        $user = factory(User::class)->create();
+
+        $user = User::whereUuid($user->uuid)->first();
+
+        $newData['current_tenancy_id'] = optional(Tenancy::where('id', '!=', $user->current_tenancy_id)->first())->id;
+
+        if (!$newData['current_tenancy_id'])
+            abort(404);
+
+        $response = $this->actingAs($user, 'api')->json('put', 'v1/users/' . $user->uuid, $newData);
+
+        $response->assertJsonFragment(['current_tenancy_id' => $newData['current_tenancy_id']])->assertStatus(200);
     }
 
     public function testDeleteUser()
