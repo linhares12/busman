@@ -40,6 +40,45 @@ class AccountTest extends TestCase
 
         $response->assertStatus(201);
     }
+    public function testCreateAccountRequest()
+    {
+        $tenancy = Tenancy::create(['name' => 'Teste']);
+
+        $user = factory(User::class)->create(['current_tenancy_id' => $tenancy->id]);
+
+        $user->tenancies()->sync($tenancy->id);
+
+        Auth::loginUsingId($user->id);
+
+        $response = $this->actingAs($user, 'api')->json('post', 'v1/accounts', ['name' => 'Teste']);
+
+        $response->assertStatus(422)->assertJsonFragment([
+                "message" => "The given data was invalid.",
+                "errors" => [
+                    "amount" => [
+                        0 => "The amount field is required."
+                    ]
+                ]
+            ]
+        );
+    }
+
+    public function testCreateAccountUuid()
+    {
+        $tenancy = Tenancy::create(['name' => 'Teste']);
+
+        $user = factory(User::class)->create(['current_tenancy_id' => $tenancy->id]);
+
+        $user->tenancies()->sync($tenancy->id);
+
+        Auth::loginUsingId($user->id);
+
+        $data = factory(Account::class)->make(['accountable_id' => $user->uuid])->toArray();
+
+        $response = $this->actingAs($user, 'api')->json('post', 'v1/accounts', $data);
+
+        $response->assertStatus(201);
+    }
 
     public function testShowAccount()
     {
@@ -81,7 +120,34 @@ class AccountTest extends TestCase
             ]);
     }
 
-    public function testUpdateOthersAccount()
+    public function testUpdateAccountRequest()
+    {
+        $tenancy = Tenancy::create(['name' => 'Teste']);
+
+        $user = factory(User::class)->create(['current_tenancy_id' => $tenancy->id]);
+        $user->tenancies()->sync($tenancy->id);
+
+        Auth::loginUsingId($user->id);
+
+        $accountResponse = $this->actingAs($user, 'api')->json('post', 'v1/accounts', factory(Account::class)->make()->toArray());
+        $account = json_decode($accountResponse->getContent());
+
+        $response = $this->actingAs($user, 'api')->json('put', 'v1/accounts/' . $account->uuid, ['accountable_id' => 'Teste']);
+
+        $response
+            ->assertStatus(422)
+            ->assertJsonFragment([
+                    "message" => "The given data was invalid.",
+                    "errors" => [
+                        "accountable_id" => [
+                            0 => "Uuid does not exists."
+                        ]
+                    ]
+                ]
+            );
+    }
+
+    public function testUpdateAccountNotFount()
     {
         $tenancy = Tenancy::create(['name' => 'Teste']);
 

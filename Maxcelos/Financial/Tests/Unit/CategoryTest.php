@@ -42,6 +42,30 @@ class CategoryTest extends TestCase
 
         $response->assertStatus(201);
     }
+    public function testCreateCategoryRequest()
+    {
+        $tenancy = Tenancy::create(['name' => 'Teste']);
+
+        $user = factory(User::class)->create(['current_tenancy_id' => $tenancy->id]);
+
+        $user->tenancies()->sync($tenancy->id);
+
+        Auth::loginUsingId($user->id);
+
+        $response = $this->actingAs($user, 'api')->json('post', 'v1/categories', ['name' => 'test']);
+
+        $response->assertStatus(422)->assertJsonFragment([
+            "message" => "The given data was invalid.",
+            "errors" => [
+                "color" => [
+                    0 => "The color field is required."
+                ],
+                "type" => [
+                    0 => "The type field is required."
+                ]
+            ]
+        ]);
+    }
 
     public function testShowCategory()
     {
