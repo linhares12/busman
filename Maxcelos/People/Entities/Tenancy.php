@@ -17,4 +17,9 @@ class Tenancy extends Model
     protected $casts = [
         'uuid' => 'uuid'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

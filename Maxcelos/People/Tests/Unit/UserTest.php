@@ -67,7 +67,9 @@ class UserTest extends TestCase
 
         $user = User::whereUuid($user->uuid)->first();
 
-        $newData['current_tenancy_id'] = optional(Tenancy::where('id', '!=', $user->current_tenancy_id)->first())->id;
+        $user->tenancies()->sync(Tenancy::all()->pluck('id')->toArray());
+
+        $newData['current_tenancy_id'] = optional($user->tenancies()->where('id', '!=', $user->current_tenancy_id)->first())->id;
 
         if (!$newData['current_tenancy_id'])
             abort(404);

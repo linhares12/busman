@@ -32,4 +32,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new VerifyEmail);
     }
+
+    public function tenancies()
+    {
+        return $this->belongsToMany(Tenancy::class);
+    }
 }

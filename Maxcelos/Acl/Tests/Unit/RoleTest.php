@@ -4,8 +4,7 @@ namespace Maxcelos\Acl\Tests\Unit;
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Maxcelos\Acl\Entities\Role;
-use Maxcelos\Acl\Repositories\RoleRepository;
-use Maxcelos\Acl\Services\RoleService;
+use Maxcelos\People\Entities\Tenancy;
 use Maxcelos\People\Entities\User;
 use Tests\TestCase;
 
@@ -15,25 +14,38 @@ class RoleTest extends TestCase
 
     public function testCreateRole()
     {
-        $user = factory(User::class)->create();
+        $tenancy = Tenancy::create(['name' => 'Teste']);
+
+        $user = factory(User::class)->create(['current_tenancy_id' => $tenancy->id]);
+
+        $user->tenancies()->sync($tenancy->id);
+
         $data = factory(Role::class)->make()->toArray();
 
-        $this->actingAs($user, 'api')->json('post', 'v1/roles', $data)
-            ->assertStatus(201);
+        $response = $this->actingAs($user, 'api')->json('post', 'v1/roles', $data);
+
+        $response->assertStatus(201);
     }
 
     public function testListRoles()
     {
-        $user = factory(User::class)->create();
+        $tenancy = Tenancy::create(['name' => 'Teste']);
+        $user = factory(User::class)->create(['current_tenancy_id' => $tenancy->id]);
         $this->actingAs($user, 'api')->json('get', 'v1/roles')
             ->assertStatus(200);
     }
 
     public function testShowRole()
     {
-        $user = factory(User::class)->create();
-        $roleService = new RoleService(new RoleRepository(new Role()));
-        $role = $roleService->make(factory(Role::class)->make()->toArray());
+        $tenancy = Tenancy::create(['name' => 'Teste']);
+
+        $user = factory(User::class)->create(['current_tenancy_id' => $tenancy->id]);
+
+        $user->tenancies()->sync($tenancy->id);
+
+        $roleResponse = $this->actingAs($user, 'api')->json('post', 'v1/roles', factory(Role::class)->make()->toArray());
+
+        $role = json_decode($roleResponse->getContent());
 
         $this->actingAs($user, 'api')->json('get', 'v1/roles/' . $role->id)
             ->assertStatus(200);
@@ -41,25 +53,56 @@ class RoleTest extends TestCase
 
     public function testUpdateRole()
     {
-        $user = factory(User::class)->create();
-        $roleService = new RoleService(new RoleRepository(new Role()));
-        $role = $roleService->make(factory(Role::class)->make()->toArray());
+        $tenancy = Tenancy::create(['name' => 'Teste']);
+
+        $user = factory(User::class)->create(['current_tenancy_id' => $tenancy->id]);
+        $user->tenancies()->sync($tenancy->id);
+
+        $roleResponse = $this->actingAs($user, 'api')->json('post', 'v1/roles', factory(Role::class)->make()->toArray());
+        $role = json_decode($roleResponse->getContent());
 
         $newData = factory(Role::class)->make()->toArray();
 
-        $roleUpdated = $roleService->make($newData)->toArray();
-        $roleUpdated['id'] = $role->id;
+        $this->actingAs($user, 'api')->json('put', 'v1/roles/' . $role->id, $newData)
+            ->assertStatus(200)
+            ->assertJsonFragment([
+                'name' => $newData['name'],
+                'description' => $newData['description'],
+            ]);
+    }
+
+    public function testUpdateOthersRole()
+    {
+        $tenancy = Tenancy::create(['name' => 'Teste']);
+
+        $user = factory(User::class)->create(['current_tenancy_id' => $tenancy->id]);
+        $user->tenancies()->sync($tenancy->id);
+
+        $roleResponse = $this->actingAs($user, 'api')->json('post', 'v1/roles', factory(Role::class)->make()->toArray());
+        $role = json_decode($roleResponse->getContent());
+
+        $newData = factory(Role::class)->make()->toArray();
+
+        $tenancy = Tenancy::create(['name' => 'Other Tenancy']);
+
+        $user = factory(User::class)->create(['current_tenancy_id' => $tenancy->id]);
+        $user->tenancies()->sync($tenancy->id);
 
         $this->actingAs($user, 'api')->json('put', 'v1/roles/' . $role->id, $newData)
-            ->assertJsonFragment($roleUpdated)
-            ->assertStatus(200);
+            ->assertStatus(404);
     }
 
     public function testDeleteRole()
     {
-        $user = factory(User::class)->create();
-        $roleService = new RoleService(new RoleRepository(new Role()));
-        $role = $roleService->make(factory(Role::class)->make()->toArray());
+        $tenancy = Tenancy::create(['name' => 'Teste']);
+
+        $user = factory(User::class)->create(['current_tenancy_id' => $tenancy->id]);
+
+        $user->tenancies()->sync($tenancy->id);
+
+        $roleResponse = $this->actingAs($user, 'api')->json('post', 'v1/roles', factory(Role::class)->make()->toArray());
+
+        $role = json_decode($roleResponse->getContent());
 
         $this->actingAs($user, 'api')->json('delete', 'v1/roles/' . $role->id)->assertStatus(204);
     }
