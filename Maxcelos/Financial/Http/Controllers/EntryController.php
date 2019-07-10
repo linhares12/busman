@@ -2,8 +2,6 @@
 
 namespace Maxcelos\Financial\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Maxcelos\Financial\Entities\Entry;
 use Maxcelos\Financial\Http\Requests\EntryRequest;
 use Maxcelos\Financial\Services\EntryService;

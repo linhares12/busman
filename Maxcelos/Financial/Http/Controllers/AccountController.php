@@ -1,6 +1,7 @@
 <?php
 
 namespace Maxcelos\Financial\Http\Controllers;
+
 use Nwidart\Modules\Routing\Controller;
 use Maxcelos\Financial\Entities\Account;
 use Maxcelos\Financial\Http\Requests\AccountRequest;

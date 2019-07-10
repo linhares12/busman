@@ -8,6 +8,7 @@ use Maxcelos\Financial\Contracts\Account as AccountContract;
 use Maxcelos\Financial\Contracts\Category as CategoryContract;
 use Maxcelos\Financial\Entities\Account;
 use Maxcelos\Financial\Entities\Category;
+use Maxcelos\Financial\Entities\Entry;
 use Maxcelos\Financial\Policies\AccountPolicy;
 use Maxcelos\Financial\Policies\CategoryPolicy;
 use Maxcelos\Financial\Repositories\AccountRepository;
@@ -20,7 +21,8 @@ class FinancialServiceProvider extends ServiceProvider
 
     protected $policies = [
         Account::class => AccountPolicy::class,
-        Category::class => CategoryPolicy::class
+        Category::class => CategoryPolicy::class,
+
     ];
 
     /**
@@ -50,6 +52,7 @@ class FinancialServiceProvider extends ServiceProvider
 
         $this->app->bind(AccountContract::class, AccountRepository::class);
         $this->app->bind(CategoryContract::class, CategoryRepository::class);
+        $this->app->bind(Ent::class, CategoryRepository::class);
     }
 
     /**

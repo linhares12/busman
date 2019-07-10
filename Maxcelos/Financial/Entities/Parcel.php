@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Parcel extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [
+        'uuid', 'description', 'entry_id', 'number', 'due_date', 'payment_date'
+    ];
 }
